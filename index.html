@@ -208,7 +208,7 @@
     .hero-title em { font-style: normal; color: var(--blue); }
     .hero-desc { font-size: 13px; color: var(--text2); line-height: 1.9; max-width: 520px; font-weight: 300; }
     .hero-certs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem; }
-    .cert-pill { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--border2); color: var(--text2); letter-spacing: .06em; }
+    .cert-pill { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--border2); color: var(--text2); letter-spacing: .06em; transition: all .2s; user-select: none; }
     .cert-pill.hot { border-color: var(--blue); color: var(--blue); background: var(--blue3); }
 
     .sec { padding: 2rem 0; border-bottom: 1px solid var(--border); }
@@ -293,15 +293,11 @@
     </div>
     <h1 class="hero-title">國際 IT 認證<br><em>備考教程</em></h1>
     <p class="hero-desc">專注 AWS、Cisco、CompTIA、Microsoft 等主流認證的備考經驗與考點解析，每篇文章配圖詳解，幫你高效理解、少走彎路。</p>
-    <div class="hero-certs" aria-label="覆蓋認證">
-      <div class="cert-pill hot">AWS SAA</div>
-      <div class="cert-pill hot">CCNA</div>
-      <div class="cert-pill hot">Security+</div>
-      <div class="cert-pill">AZ-900</div>
-      <div class="cert-pill">PMP</div>
-      <div class="cert-pill">CISSP</div>
-      <div class="cert-pill">CCIE</div>
-      <div class="cert-pill">CKA</div>
+    <div class="hero-certs" aria-label="文章分類">
+      <div class="cert-pill filter-btn hot" data-filter="ALL" onclick="filterPosts('ALL')" style="cursor: pointer;">ALL</div>
+      <div class="cert-pill filter-btn" data-filter="CERT" onclick="filterPosts('CERT')" style="cursor: pointer;">CERT</div>
+      <div class="cert-pill filter-btn" data-filter="TOOL" onclick="filterPosts('TOOL')" style="cursor: pointer;">TOOL</div>
+      <div class="cert-pill filter-btn" data-filter="TIP" onclick="filterPosts('TIP')" style="cursor: pointer;">TIP</div>
     </div>
   </section>
 
@@ -310,9 +306,9 @@
     <div class="sec-hd">
       <span class="sec-title"><span>//</span>FEATURED</span>
     </div>
-                            <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
-      <div class="feat-title">鸿鹄论坛</div>
-      <p class="feat-desc">鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇</p>
+                            <a href="posts/CCNA測試的.html" class="feat-card">
+      <div class="feat-title">CCNA 考试报名流程与费用</div>
+      <p class="feat-desc">這是個測試的</p>
       <div class="feat-foot">
         <div class="tags">
           <span class="tag blue">TIP</span>
@@ -322,37 +318,11 @@
     </a>
   </section>
 
-      <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
-      <div class="feat-title">鸿鹄论坛</div>
-      <p class="feat-desc">鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇</p>
-      <div class="feat-foot">
-        <div class="tags">
-          <span class="tag blue">TIP</span>
-        </div>
-        <div class="read-more">READ FULL →</div>
-      </div>
-    </a>    <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
-      <div class="feat-title">鸿鹄论坛</div>
-      <p class="feat-desc">鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇</p>
-      <div class="feat-foot">
-        <div class="tags">
-          <span class="tag blue">TIP</span>
-        </div>
-        <div class="read-more">READ FULL →</div>
-      </div>
-    </a><section class="sec" aria-label="最新文章">
+  <section class="sec" aria-label="最新文章">
     <div class="sec-hd">
       <span class="sec-title"><span>//</span>LATEST POSTS</span>
     </div>
     <div class="posts-list">
-      <a href="posts/CCNA測試的.html" class="post-row">
-        <div>
-          <div class="post-meta"><span class="post-tag tip">TIP</span><span class="post-date">2026-06-16</span></div>
-          <div class="post-title">CCNA 考试报名流程与费用</div>
-          <div class="post-exc">這是個測試的</div>
-        </div>
-        <div class="post-min"></div>
-      </a>
       <a href="posts/CISA申请流程指南.html" class="post-row">
         <div>
           <div class="post-meta"><span class="post-tag cert">CERT</span><span class="post-date">2026-06-16</span></div>
@@ -690,6 +660,48 @@
   resize();
   draw();
 })();
+
+function filterPosts(tag) {
+  // Update active state of filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    if (btn.dataset.filter === tag) {
+      btn.classList.add('hot');
+    } else {
+      btn.classList.remove('hot');
+    }
+  });
+
+  // Filter regular posts
+  const posts = document.querySelectorAll('.post-row');
+  posts.forEach(post => {
+    const tagEl = post.querySelector('.post-tag');
+    if (!tagEl) return;
+    const postTag = tagEl.textContent.trim().toUpperCase();
+    if (tag === 'ALL' || postTag === tag) {
+      post.style.display = '';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+
+  // Filter featured posts
+  const featCards = document.querySelectorAll('.feat-card');
+  featCards.forEach(card => {
+    const tagEl = card.querySelector('.tag');
+    if (!tagEl) return;
+    const postTag = tagEl.textContent.trim().toUpperCase();
+    // find the parent section to hide it completely if needed, or just hide the card
+    // The structure is: <section class="sec"> ... <a class="feat-card"> ...
+    const sec = card.closest('.sec');
+    if (tag === 'ALL' || postTag === tag) {
+      if (sec) sec.style.display = '';
+      card.style.display = '';
+    } else {
+      if (sec) sec.style.display = 'none';
+      card.style.display = 'none';
+    }
+  });
+}
 </script>
 
 
