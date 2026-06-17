@@ -93,37 +93,42 @@ function buildPostRowHTML(post) {
       </a>`;
 }
 
-// ── 3. 更新 index.html ─────────────────────────────────────────────
+// ── 3. 更新 index.html 中的文章列表 ────────────────────────────────
 function updateIndex(posts) {
   let html = fs.readFileSync(INDEX_FILE, 'utf-8');
 
-  // 3a. FEATURED 区块
-  const featured = posts.find(p => p.featured === 'true') || posts[0];
-  if (featured) {
-    // 检查页面中是否已经存在 FEATURED 块
-    if (html.includes('FEATURED</span>')) {
-        // 使用更宽松的正则来匹配已经存在的 FEATURED 块并替换其内容
-        html = html.replace(
-          /(<section class="sec"[^>]*>\s*<div class="sec-hd">\s*<span class="sec-title"><span>\/\/<\/span>FEATURED<\/span>\s*<\/div>\s*)[\s\S]*?(<\/section>)/i,
-          `$1${buildFeaturedHTML(featured)}\n  $2`
-        );
-    } else {
-        // 如果 HTML 模板中去掉了 FEATURED 区块，我们在 LATEST POSTS 前面补上它
-        const featureSection = `  <section class="sec" aria-label="推荐文章">\n    <div class="sec-hd">\n      <span class="sec-title"><span>//</span>FEATURED</span>\n    </div>\n${buildFeaturedHTML(featured)}\n  </section>\n\n  `;
-        // 查找 LATEST POSTS 的开头位置并插入
-        html = html.replace(/(<section class="sec"[^>]*>\s*<div class="sec-hd">\s*<span class="sec-title"><span>\/\/<\/span>LATEST POSTS)/i, featureSection + '$1');
-    }
+  // 先清空之前可能遺留的置頂推薦區塊，防止重復生成
+  html = html.replace(/<div class="featured-post">[\s\S]*?<\/div>\s*\s*/gi, '');
+
+  let featureSection = '';
+  let displayPosts = [...posts]; // 複製一份完整的文章列表
+
+  if (posts.length > 0) {
+    // 1. 尋找帶有推薦標籤中日期最新的一篇；如果都沒有帶，就默認拿最新的一篇文章置頂
+    const featured = posts.find(p => p.featured === 'true') || posts[0];
+    
+    // 2. 【核心修改】：只把真正被選為置頂的這一篇從普通列表裡剔除
+    // 這樣其餘同樣帶有 @featured: true 的舊推薦文章，就會安全留在 displayPosts 裡排隊
+    displayPosts = posts.filter(p => p.file !== featured.file);
+
+    // 3. 生成置頂推薦區塊的 HTML
+    featureSection = buildFeaturedHTML(featured);
+    
+    // 4. 精準插入到 LATEST POSTS 的前面
+    html = html.replace(/(<section class="sec"[^>]*>\s*<div class="sec-hd">\s*<span class="sec-title"><span>\/\/<\/span>LATEST POSTS)/i, featureSection + '$1');
   }
 
-  // 3b. LATEST POSTS 区块（最多显示 5 篇）
-  const latestRows = posts.slice(0, 5).map(buildPostRowHTML).join('\n');
+  // 3b. LATEST POSTS 區塊（最多顯示 10 篇）
+  // 【核心修改】：這裡改用過濾後的 displayPosts，保證置頂的不重復，舊推薦文章能正常顯示
+  const latestRows = displayPosts.slice(0, 10).map(buildPostRowHTML).join('\n');
+  
   html = html.replace(
     /(<div class="posts-list">)\s*[\s\S]*?(<\/div>\s*<\/section>)/,
     `$1\n${latestRows}\n    $2`
   );
 
   fs.writeFileSync(INDEX_FILE, html, 'utf-8');
-  console.log(`✅ index.html 已更新（${posts.length} 篇文章）`);
+  console.log(`✅ index.html 已更新（共 ${posts.length} 篇文章，當前置頂 1 篇，普通列表顯示 ${displayPosts.slice(0, 10).length} 篇）`);
 }
 
 // ── 4. 更新 sitemap.xml ────────────────────────────────────────────
