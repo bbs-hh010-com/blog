@@ -8,7 +8,7 @@ const path = require('path');
 const POSTS_DIR   = path.join(__dirname, '..', 'posts');
 const INDEX_FILE  = path.join(__dirname, '..', 'index.html');
 const SITEMAP_FILE = path.join(__dirname, '..', 'sitemap.xml');
-const BASE_URL    = 'https://quantum-darkmatter.github.io';
+const BASE_URL    = 'https://bbs-hh010-com.github.io/blog';
 
 // ── 1. 读取所有文章，解析头部注释 ──────────────────────────────────
 function parseMeta(html) {
