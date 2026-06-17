@@ -1,0 +1,438 @@
+<!--
+@title:   鸿鹄论坛
+@date:    2026-06-15
+@tag:     tip
+@excerpt: 鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇
+@featured: true
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鸿鹄论坛 · 中国IT认证第一站</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:    #D9252A;
+    --dark:   #111318;
+    --mid:    #1E2229;
+    --card:   #262C35;
+    --border: rgba(255,255,255,0.08);
+    --text:   #E8EAF0;
+    --muted:  #7A8494;
+    --gold:   #F5C842;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--mid);
+    border-bottom: 2px solid var(--red);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: var(--red);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .logo-name { font-size: 20px; font-weight: 700; letter-spacing: .04em; }
+  .logo-sub  { font-size: 11px; color: var(--muted); margin-top: 2px; letter-spacing: .1em; }
+  .icp {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1a0a0b 0%, #1E2229 60%, #111318 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 24px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(217,37,42,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--red);
+    color: var(--red);
+    font-size: 11px; letter-spacing: .18em;
+    padding: 4px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero-title em { color: var(--red); font-style: normal; }
+  .hero-desc {
+    font-size: 14px; color: var(--muted);
+    max-width: 520px; margin: 0 auto 28px;
+    font-weight: 300;
+  }
+  .hero-link {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 13px; font-weight: 500;
+    padding: 11px 28px; border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: opacity .15s;
+  }
+  .hero-link:hover { opacity: .85; }
+
+  /* ── STATS ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { font-size: .55em; color: var(--gold); font-weight: 400; margin-left: 2px; }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: .06em; }
+
+  /* ── SECTIONS ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+  .section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+
+  .sec-eyebrow {
+    font-size: 10px; color: var(--red); letter-spacing: .2em;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sec-eyebrow::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .sec-title { font-size: 20px; font-weight: 700; margin-bottom: 24px; }
+
+  /* ── CERT GRID ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .cert-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cert-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--red); flex-shrink: 0;
+  }
+
+  /* ── TRUST CARDS ── */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .trust-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .trust-card-icon { font-size: 22px; margin-bottom: 10px; }
+  .trust-card-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .trust-card-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  /* ── DOMAIN CARD ── */
+  .domain-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .domain-row {
+    display: flex; align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .domain-row:last-child { border-bottom: none; }
+  .domain-key { color: var(--muted); width: 110px; flex-shrink: 0; font-size: 12px; }
+  .domain-val { font-weight: 500; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 500;
+  }
+  .badge-green { background: rgba(34,197,94,.15); color: #4ade80; }
+  .badge-blue  { background: rgba(59,130,246,.15); color: #60a5fa; }
+
+  /* ── SERVICE ── */
+  .service-list { display: flex; flex-direction: column; gap: 10px; }
+  .service-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 14px;
+    font-size: 13px;
+  }
+  .service-icon { font-size: 18px; flex-shrink: 0; }
+  .service-name { font-weight: 500; }
+  .service-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ── CTA ── */
+  .cta {
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .cta-title { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .cta-sub   { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 14px; font-weight: 600;
+    padding: 13px 36px; border-radius: 6px;
+    text-decoration: none;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 11px; color: var(--muted);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-bottom: 1px solid var(--border); }
+    .trust-grid { grid-template-columns: 1fr; }
+    .icp { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-icon">鸿</div>
+  <div>
+    <div class="logo-name">鸿鹄论坛</div>
+    <div class="logo-sub">bbs.hh010.com</div>
+  </div>
+  <div class="icp">京ICP备14027439号</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">中国 IT 认证第一站</div>
+  <h1 class="hero-title">国内最大<em>网络工程师</em><br>技术社区</h1>
+  <p class="hero-desc">深耕思科 · 华为 · H3C · 微软 · Linux 认证领域超过 16 年，<br>百万工程师的共同选择。</p>
+  <a href="https://bbs.hh010.com" class="hero-link" target="_blank">立即访问论坛 →</a>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">184<span>万+</span></div>
+    <div class="stat-label">注册会员</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">1367<span>万+</span></div>
+    <div class="stat-label">技术帖子</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">16<span>年</span></div>
+    <div class="stat-label">稳定运营</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">9<span>位</span></div>
+    <div class="stat-label">专职客服</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 认证覆盖 -->
+  <div class="section">
+    <div class="sec-eyebrow">CERTIFICATIONS</div>
+    <div class="sec-title">覆盖全主流 IT 认证体系</div>
+    <div class="cert-grid">
+      <div class="cert-pill"><span class="cert-dot"></span>CCNA / CCNP</div>
+      <div class="cert-pill"><span class="cert-dot"></span>CCIE</div>
+      <div class="cert-pill"><span class="cert-dot"></span>HCIA / HCIP</div>
+      <div class="cert-pill"><span class="cert-dot"></span>HCIE</div>
+      <div class="cert-pill"><span class="cert-dot"></span>H3C / 锐捷</div>
+      <div class="cert-pill"><span class="cert-dot"></span>Juniper</div>
+      <div class="cert-pill"><span class="cert-dot"></span>Red Hat</div>
+      <div class="cert-pill"><span class="cert-dot"></span>Microsoft</div>
+      <div class="cert-pill"><span class="cert-dot"></span>VMware VCP</div>
+      <div class="cert-pill"><span class="cert-dot"></span>PMP</div>
+      <div class="cert-pill"><span class="cert-dot"></span>软考</div>
+      <div class="cert-pill"><span class="cert-dot"></span>F5 / 其他</div>
+    </div>
+  </div>
+
+  <!-- 可信度 -->
+  <div class="section">
+    <div class="sec-eyebrow">WHY TRUST US</div>
+    <div class="sec-title">为什么选择鸿鹄</div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-card-icon">🏛️</div>
+        <div class="trust-card-title">16 年老站，口碑积累</div>
+        <div class="trust-card-desc">域名 hh010.com 注册于 2009 年，持续运营至今，行业内深度认可，非一日之功。</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">🔒</div>
+        <div class="trust-card-title">工信部正规备案</div>
+        <div class="trust-card-desc">京ICP备14027439号，实名备案、合法经营，信息透明可查，绝非小作坊。</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">📊</div>
+        <div class="trust-card-title">百万会员真实见证</div>
+        <div class="trust-card-desc">184 万注册用户，1367 万条帖子，每天数千人活跃在线，内容生态自然真实。</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">📦</div>
+        <div class="trust-card-title">海量资源 · FTP 题库</div>
+        <div class="trust-card-desc">尊贵 VIP 专属 FTP 资料库、历年最新题库、视频教程持续更新，物超所值。</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">🌐</div>
+        <div class="trust-card-title">站长之家排名前 16K</div>
+        <div class="trust-card-desc">全网综合排名约 15,581，论坛类排名 377，数据客观，流量真实可查。</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">🎓</div>
+        <div class="trust-card-title">培训 · 考试 · 全流程</div>
+        <div class="trust-card-desc">培训团购、考试报名、全球 CCIE 排名查询，从学习到持证一站搞定。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 域名信息 -->
+  <div class="section">
+    <div class="sec-eyebrow">DOMAIN INFO</div>
+    <div class="sec-title">域名真实可查</div>
+    <div class="domain-card">
+      <div class="domain-row">
+        <span class="domain-key">域名</span>
+        <span class="domain-val">hh010.com</span>
+      </div>
+      <div class="domain-row">
+        <span class="domain-key">注册商</span>
+        <span class="domain-val">阿里云（Alibaba Cloud）</span>
+      </div>
+      <div class="domain-row">
+        <span class="domain-key">注册时间</span>
+        <span class="domain-val">2009 年 11 月 12 日</span>
+      </div>
+      <div class="domain-row">
+        <span class="domain-key">域名年龄</span>
+        <span class="domain-val"><span class="badge badge-blue">已超 16 年</span></span>
+      </div>
+      <div class="domain-row">
+        <span class="domain-key">过期时间</span>
+        <span class="domain-val">2027 年 11 月（有效续费）</span>
+      </div>
+      <div class="domain-row">
+        <span class="domain-key">状态</span>
+        <span class="domain-val"><span class="badge badge-green">✓ 正常（ok）</span></span>
+      </div>
+      <div class="domain-row">
+        <span class="domain-key">ICP 备案</span>
+        <span class="domain-val"><span class="badge badge-green">✓ 京ICP备14027439号</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 客服体系 -->
+  <div class="section">
+    <div class="sec-eyebrow">SUPPORT</div>
+    <div class="sec-title">多渠道专职客服</div>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-icon">💬</div>
+        <div>
+          <div class="service-name">QQ 客服（多线）</div>
+          <div class="service-desc">论坛技术客服 1 & 2 · 业务客服一、三、五、八、九 — 7 条专线随时响应</div>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">📧</div>
+        <div>
+          <div class="service-name">客服邮件</div>
+          <div class="service-desc">官方邮件渠道，适合详细问题咨询，工作日快速回复</div>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">📱</div>
+        <div>
+          <div class="service-name">手机版 · APP</div>
+          <div class="service-desc">支持手机版访问，随时随地查资料、刷题、与学员交流</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-title">加入 184 万工程师的共同选择</div>
+  <div class="cta-sub">16 年 · 千万帖子 · 百万学员 · 正规备案 · 多渠道客服</div>
+  <a href="https://bbs.hh010.com" class="cta-btn" target="_blank">立即访问 bbs.hh010.com</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  鸿鹄论坛 bbs.hh010.com &nbsp;·&nbsp; 京ICP备14027439号 &nbsp;·&nbsp; 数据来源：站长之家 / 中国whois查询
+</div>
+
+</body>
+</html>
