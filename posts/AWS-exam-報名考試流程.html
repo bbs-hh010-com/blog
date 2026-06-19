@@ -1,0 +1,1015 @@
+<!--
+@title:   AWS认证考试报名全流程教程
+@date:    2026-06-19
+@tag:     cert
+@excerpt: 想考 AWS 認證但對報名流程感到陌生？本文詳細說明從建立 AWS Certification 帳號、選擇考試科目、透過 Pearson VUE 預約考場，到付款完成的完整步驟。內容同時涵蓋線上監考與實體考場的差異，幫助港澳台考生快速掌握報名要點。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS认证考试报名全流程教程</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0b1a2e 0%, #1a2d44 50%, #0f1923 100%);
+            color: #e8edf3;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* ===== Decorative background orbs ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -30%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 153, 0, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 50%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(35, 142, 255, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Container ===== */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            text-align: center;
+            padding: 50px 0 40px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 153, 0, 0.15);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 13px;
+            color: #ffb347;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .header-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff8c00, #ffc107, #ff8c00);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #8899b0;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* ===== Section Card ===== */
+        .section {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            border-color: rgba(255, 153, 0, 0.25);
+            box-shadow: 0 8px 32px rgba(255, 153, 0, 0.06);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff8c00, #e67600);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f0f4fa;
+        }
+
+        .section-content {
+            color: #c8d4e4;
+            font-size: 15px;
+        }
+
+        .section-content p {
+            margin-bottom: 14px;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== Step ===== */
+        .step {
+            display: flex;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .step:first-child {
+            padding-top: 4px;
+        }
+
+        .step-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 153, 0, 0.12);
+            color: #ffb347;
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .step-body {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #f0f4fa;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            color: #9aafc8;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .step-desc strong {
+            color: #ffb347;
+            font-weight: 600;
+        }
+
+        /* ===== Info Box ===== */
+        .info-box {
+            background: rgba(35, 142, 255, 0.08);
+            border-left: 4px solid #238eff;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #b0c8e8;
+        }
+
+        .info-box strong {
+            color: #6ab0ff;
+        }
+
+        .warning-box {
+            background: rgba(255, 153, 0, 0.08);
+            border-left: 4px solid #ff8c00;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #d4b890;
+        }
+
+        .warning-box strong {
+            color: #ffb347;
+        }
+
+        .tip-box {
+            background: rgba(0, 200, 120, 0.08);
+            border-left: 4px solid #00c878;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #9cd4b8;
+        }
+
+        .tip-box strong {
+            color: #4ade80;
+        }
+
+        /* ===== Checklist ===== */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #b8c8dc;
+        }
+
+        .checklist li::before {
+            content: '✓';
+            color: #4ade80;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ===== Price Table ===== */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .price-table th {
+            text-align: left;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #8899b0;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-table th:first-child { border-radius: 8px 0 0 0; }
+        .price-table th:last-child { border-radius: 0 8px 0 0; }
+
+        .price-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #b8c8dc;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table .price {
+            color: #ffb347;
+            font-weight: 700;
+            font-family: "SF Mono", "Fira Code", monospace;
+        }
+
+        /* ===== Link List ===== */
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .link-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 14px;
+        }
+
+        .link-list li:last-child {
+            border-bottom: none;
+        }
+
+        .link-list a {
+            color: #6ab0ff;
+            text-decoration: none;
+            transition: color 0.2s, padding-left 0.2s;
+            display: inline-block;
+            padding: 2px 0;
+        }
+
+        .link-list a:hover {
+            color: #8fc4ff;
+            padding-left: 4px;
+        }
+
+        .link-list a::before {
+            content: '🔗 ';
+            opacity: 0.7;
+        }
+
+        /* ===== Divider ===== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 153, 0, 0.2), rgba(35, 142, 255, 0.2), transparent);
+            margin: 32px 0;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 20px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #6a7e98;
+            line-height: 1.8;
+        }
+
+        .footer .highlight {
+            color: #8899b0;
+        }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding: 6px 16px;
+            background: rgba(255, 153, 0, 0.06);
+            border: 1px solid rgba(255, 153, 0, 0.12);
+            border-radius: 100px;
+            font-size: 13px;
+            color: #ffb347;
+        }
+
+        /* ===== Scroll to Top ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 153, 0, 0.15);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            color: #ffb347;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 153, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px 60px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 24px 20px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .step {
+                gap: 12px;
+            }
+
+            .price-table {
+                font-size: 13px;
+            }
+
+            .price-table th,
+            .price-table td {
+                padding: 8px 10px;
+            }
+
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .section {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+
+            .section-number {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 16px;
+            }
+
+            .step-icon {
+                min-width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+        }
+
+        /* ===== Print ===== */
+        @media print {
+            body {
+                background: #fff;
+                color: #333;
+            }
+
+            .section {
+                background: #f8f8f8;
+                border-color: #ddd;
+                box-shadow: none;
+                break-inside: avoid;
+            }
+
+            .header h1 {
+                -webkit-text-fill-color: #c75100;
+                color: #c75100;
+                background: none;
+            }
+
+            .section-title { color: #222; }
+            .section-content { color: #444; }
+            .step-desc { color: #555; }
+            .step-desc strong { color: #c75100; }
+            .info-box { background: #f0f6ff; border-left-color: #238eff; color: #333; }
+            .warning-box { background: #fff8f0; border-left-color: #ff8c00; color: #555; }
+            .tip-box { background: #f0fff8; border-left-color: #00c878; color: #444; }
+            .checklist li { color: #444; }
+            .price-table td { color: #444; border-bottom-color: #ddd; }
+            .price-table th { background: #eee; color: #555; }
+            .price-table .price { color: #c75100; }
+            .footer p { color: #888; }
+            .scroll-top { display: none; }
+            body::before, body::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== Header ===== -->
+        <header class="header">
+            <div class="header-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                认证指南
+            </div>
+            <h1>AWS 认证考试报名全流程</h1>
+            <p>从注册账号到预约考试，一步步带你拿下 AWS 认证，清晰、全面、不踩坑。</p>
+        </header>
+
+        <!-- ===== 1. 考前准备 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">考前准备</h2>
+            </div>
+            <div class="section-content">
+                <p>在正式开始报名之前，请确保你已经准备好以下材料——这会让整个流程顺畅很多。</p>
+
+                <ul class="checklist">
+                    <li>一个有效的电子邮箱（用于注册 AWS Certification 账号）</li>
+                    <li>一张有效的国际信用卡（Visa / MasterCard / 银联）或考试券</li>
+                    <li>政府颁发的带照片的身份证件（护照、身份证、驾照等）</li>
+                    <li>稳定的网络环境（如果选择在线考试）</li>
+                    <li>静音、无干扰的考试空间（在线考试需满足环境要求）</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 温馨提示：</strong> 建议提前准备好身份证件的电子扫描件或清晰照片，部分考试中心可能会要求上传。
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 2. 注册 AWS Certification 账号 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">注册 AWS Certification 账号</h2>
+            </div>
+            <div class="section-content">
+
+                <div class="step">
+                    <div class="step-icon">A</div>
+                    <div class="step-body">
+                        <div class="step-title">访问 AWS Certification 官网</div>
+                        <div class="step-desc">
+                            打开浏览器，访问 <strong>aws.amazon.com/certification</strong>，点击页面右上角的 <strong>"Sign In to the AWS Certification Account"</strong>。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">B</div>
+                    <div class="step-body">
+                        <div class="step-title">创建或登录 AWS 账号</div>
+                        <div class="step-desc">
+                            如果你已有 <strong>AWS 根账号</strong>（用于使用 AWS 云服务的账号），可以直接使用该邮箱登录。如果没有，点击 <strong>"Create a new AWS account"</strong> 创建一个新账号。注意：<strong>AWS 根账号与 AWS Certification 账号绑定</strong>，但认证账号有独立的档案系统。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">C</div>
+                    <div class="step-body">
+                        <div class="step-title">完善个人信息</div>
+                        <div class="step-desc">
+                            登录 Certification 平台后，进入 <strong>"My Account"</strong> 页面，填写或确认你的姓名、邮箱、联系电话和邮寄地址。<strong>姓名必须与考试时出示的身份证件完全一致</strong>，否则可能导致无法入场。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ 重要提醒：</strong> 姓名拼写必须和护照/身份证上的 <strong>拼音/英文名</strong> 完全一致。如果有中间名，务正确实填写。不一致会导致考试中心拒绝入场。
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== 3. 选择考试 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">选择考试</h2>
+            </div>
+            <div class="section-content">
+                <p>AWS 提供多种认证路径，涵盖不同角色和专业领域。以下是主流认证体系：</p>
+
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>认证级别</th>
+                            <th>代表考试</th>
+                            <th>建议备考时间</th>
+                            <th>考试费用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>☁️ Foundational</td>
+                            <td>Cloud Practitioner (CLF-C02)</td>
+                            <td>2-4 周</td>
+                            <td class="price">$100 USD</td>
+                        </tr>
+                        <tr>
+                            <td>⚙️ Associate</td>
+                            <td>Solutions Architect (SAA-C03)</td>
+                            <td>6-12 周</td>
+                            <td class="price">$150 USD</td>
+                        </tr>
+                        <tr>
+                            <td>⚙️ Associate</td>
+                            <td>Developer (DVA-C02)</td>
+                            <td>6-10 周</td>
+                            <td class="price">$150 USD</td>
+                        </tr>
+                        <tr>
+                            <td>⚙️ Associate</td>
+                            <td>SysOps Administrator (SOA-C02)</td>
+                            <td>6-10 周</td>
+                            <td class="price">$150 USD</td>
+                        </tr>
+                        <tr>
+                            <td>🚀 Professional</td>
+                            <td>Solutions Architect Professional (SAP-C02)</td>
+                            <td>10-16 周</td>
+                            <td class="price">$300 USD</td>
+                        </tr>
+                        <tr>
+                            <td>🔬 Specialty</td>
+                            <td>Security / Data Analytics / ML 等</td>
+                            <td>8-12 周</td>
+                            <td class="price">$300 USD</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tip-box">
+                    <strong>🌟 新手推荐：</strong> 如果你是 AWS 新手，建议先从 <strong>AWS Certified Cloud Practitioner (CLF-C02)</strong> 入手，覆盖面广、难度适中，适合建立整体认知。
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 4. 预约考试 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">预约考试</h2>
+            </div>
+            <div class="section-content">
+
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <div class="step-body">
+                        <div class="step-title">登录 Certification 平台，点击 "Schedule an Exam"</div>
+                        <div class="step-desc">
+                            在 AWS Certification 后台，点击 <strong>"Schedule New Exam"</strong> 按钮，选择你要参加的考试名称和版本（如 AWS Certified Solutions Architect – Associate SAA-C03）。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <div class="step-body">
+                        <div class="step-title">选择考试模式</div>
+                        <div class="step-desc">
+                            你可以在以下两种模式中选择：<br>
+                            <strong>🏢 线下考试中心 (Pearson VUE Test Center)</strong> — 前往授权考试中心，在监考人员监督下完成考试。<br>
+                            <strong>💻 在线监考考试 (Online Proctored Exam)</strong> — 在家或办公室通过网络摄像头进行，由远程监考人员实时监督。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <div class="step-body">
+                        <div class="step-title">选择时间和地点</div>
+                        <div class="step-desc">
+                            考试中心模式：输入你的城市或邮编，系统会列出附近的考试中心和可选时间。<br>
+                            在线模式：选择你偏好的日期和时间段（通常 24/7 都有可用考位）。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">4</div>
+                    <div class="step-body">
+                        <div class="step-title">确认并支付</div>
+                        <div class="step-desc">
+                            核对考试信息、时间、地点无误后，进入支付环节。支持 <strong>信用卡（Visa / MasterCard / 银联）</strong> 支付，也可以输入 <strong>考试券（Exam Voucher）</strong> 兑换码。支付完成后，你会收到一封确认邮件。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>📧 确认邮件：</strong> 预约成功后，AWS 和 Pearson VUE 都会发送确认邮件到你的注册邮箱。请务必保存好邮件中的 <strong>考试确认编号（Confirmation ID）</strong>。
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== 5. 考前注意事项 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">考前注意事项</h2>
+            </div>
+            <div class="section-content">
+
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-body">
+                        <div class="step-title">证件准备</div>
+                        <div class="step-desc">
+                            <strong>必须携带</strong> 政府颁发的、带有照片的身份证件原件（护照、身份证、驾照均可）。证件上的姓名必须与 Certification 账号中的姓名 <strong>完全匹配</strong>。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-body">
+                        <div class="step-title">提前到达</div>
+                        <div class="step-desc">
+                            线下考试中心：建议提前 <strong>30 分钟</strong> 到达考点，完成签到和身份验证流程。<br>
+                            在线考试：建议提前 <strong>15 分钟</strong> 登录系统，运行系统检查并完成环境扫描。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-body">
+                        <div class="step-title">在线考试环境要求</div>
+                        <div class="step-desc">
+                            <strong>房间要求：</strong> 独立、安静、无干扰。桌面必须清空，不能有书籍、纸张、手机等物品。<br>
+                            <strong>设备要求：</strong> 电脑需配备摄像头和麦克风，安装 Pearson VUE 安全浏览器。<br>
+                            <strong>着装要求：</strong> 穿着得体，监考人员需要全程看到你的面部和双手。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-body">
+                        <div class="step-title">改期与取消</div>
+                        <div class="step-desc">
+                            考试前 <strong>24 小时</strong> 以上可以免费改期或取消。不足 24 小时则无法更改，考试费用不予退还。<br>
+                            修改方式：登录 Certification 平台 → "My Account" → "Manage Scheduled Exams" 进行操作。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ 在线考试特别注意：</strong> 严禁佩戴耳机、帽子、墨镜；考试过程中不能有人进入房间；不能查看手机或其他电子设备；不能随意离开摄像头视野。违反规则可能导致考试被终止。
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== 6. 考试当天流程 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">考试当天流程</h2>
+            </div>
+            <div class="section-content">
+
+                <div class="step">
+                    <div class="step-icon">🕐</div>
+                    <div class="step-body">
+                        <div class="step-title">签到 &amp; 身份验证</div>
+                        <div class="step-desc">
+                            线下：到前台出示身份证件，签署保密协议（NDA），存放个人物品，进入考试间。<br>
+                            线上：启动 Pearson VUE 安全浏览器，拍摄身份证件，扫描考试环境（摄像头旋转 360° 展示房间）。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">📋</div>
+                    <div class="step-body">
+                        <div class="step-title">阅读 NDA 与教程</div>
+                        <div class="step-desc">
+                            考试开始前，你需要阅读并同意 <strong>保密协议（NDA）</strong>，然后进入一个可选的考试教程界面，熟悉考试系统的操作。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">⏱️</div>
+                    <div class="step-body">
+                        <div class="step-title">正式考试</div>
+                        <div class="step-desc">
+                            考试为 <strong>计时模式</strong>，屏幕上会显示剩余时间。你可以标记不确定的题目并回头检查。大多数 AWS 考试包含 <strong>65 道题</strong>（选择题 + 多项选择 + 拖拽题等），时长 <strong>130 分钟</strong>。部分考试有额外时间（如 CLF-C02 为 90 分钟 / 50 题）。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">🎯</div>
+                    <div class="step-body">
+                        <div class="step-title">查看成绩</div>
+                        <div class="step-desc">
+                            提交答卷后，<strong>立即</strong> 在屏幕上看到 <strong>通过/未通过</strong> 的结果以及分数区间。详细的各领域成绩报告将在 <strong>5 个工作日内</strong> 发送到你的注册邮箱。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <strong>🎉 通过之后：</strong> 你可以在 Certification 平台下载电子版证书和数字徽章（通过 Credly 发放）。证书有效期为 <strong>3 年</strong>，之后需要重新认证（renew）。
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== 7. 常见问题 (FAQ) ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">常见问题 FAQ</h2>
+            </div>
+            <div class="section-content">
+
+                <div class="step">
+                    <div class="step-icon">?</div>
+                    <div class="step-body">
+                        <div class="step-title">没有 AWS 根账号可以考认证吗？</div>
+                        <div class="step-desc">不可以。AWS Certification 账号需要关联一个 AWS 根账号才能使用。注册 AWS 根账号是免费的，不需要购买任何服务。</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">?</div>
+                    <div class="step-body">
+                        <div class="step-title">考试券在哪里购买？</div>
+                        <div class="step-desc">可以通过 AWS 官网购买，也可以在 AWS 合作伙伴处购买，或参加 AWS 官方活动获取折扣券。部分第三方培训机构也提供考试券团购服务。</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">?</div>
+                    <div class="step-body">
+                        <div class="step-title">考试可以使用中文吗？</div>
+                        <div class="step-desc"><strong>部分考试</strong> 提供简体中文界面和/或中文语音题目标注（auditory instructions）。例如 Cloud Practitioner (CLF-C02) 和 Solutions Architect Associate (SAA-C03) 均支持中文。建议预约时确认语言选项。</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">?</div>
+                    <div class="step-body">
+                        <div class="step-title">没通过怎么办？可以重考吗？</div>
+                        <div class="step-desc">可以重考。首次未通过后需等待 <strong>14 天</strong> 才能再次参加同一考试。之后每次重考同样间隔 14 天。需要重新支付考试费用。</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">?</div>
+                    <div class="step-body">
+                        <div class="step-title">考试结果多久正式出？</div>
+                        <div class="step-desc">屏幕上立即显示通过/未通过结果，正式的详细成绩报告在 <strong>5 个工作日内</strong> 通过邮件发送。证书和数字徽章在成绩公布后即可下载。</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== 8. 实用链接 ===== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">实用链接</h2>
+            </div>
+            <div class="section-content">
+                <ul class="link-list">
+                    <li><a href="https://aws.amazon.com/certification/" target="_blank" rel="noopener">AWS Certification 官网</a></li>
+                    <li><a href="https://www.credly.com/organizations/amazon-web-services/badges" target="_blank" rel="noopener">AWS 数字徽章 (Credly)</a></li>
+                    <li><a href="https://aws.amazon.com/certification/certification-prep/" target="_blank" rel="noopener">AWS 官方备考资源</a></li>
+                    <li><a href="https://www.pearsonvue.com/us/en/aws.html" target="_blank" rel="noopener">Pearson VUE AWS 考试预约</a></li>
+                    <li><a href="https://aws.amazon.com/certification/policies/before-testing/" target="_blank" rel="noopener">AWS 考试政策与要求</a></li>
+                    <li><a href="https://aws.amazon.com/training/learn-about/" target="_blank" rel="noopener">AWS 官方培训课程</a></li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>🔗 链接已验证：</strong> 以上链接均已测试可正常打开（2026年6月）。如遇链接失效，请以 AWS 官网最新页面为准。
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 9. 鸿鹄论坛推荐 ===== -->
+        <div class="section" style="border-color: rgba(255, 153, 0, 0.3); background: rgba(255, 153, 0, 0.04);">
+            <div class="section-header">
+                <div class="section-number" style="background: linear-gradient(135deg, #e67600, #c65100);">推</div>
+                <h2 class="section-title">鸿鹄论坛推荐</h2>
+            </div>
+            <div class="section-content">
+                <p>鸿鹄论坛（bbs.hh010.com）深耕国际 IT 认证领域 <strong>超过 17 年</strong>，是港澳台及全球华人社群最具口碑的 IT 认证备考平台之一。提供涵盖 AWS、思科、华为、微软、红帽、PMP、ISACA 等主流厂商认证的备考资料与报名协助服务。</p>
+
+                <div class="tip-box" style="margin-top: 16px; margin-bottom: 16px;">
+                    <strong>🔥 推荐服务：</strong>
+                    <a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=666975" target="_blank" rel="noopener" style="color: #ffb347; text-decoration: underline;">
+                        【鸿鹄论坛官方】IT认证备考资料报名服务
+                    </a>
+                    <br>
+                    老品牌 · 高通过率 · 专人对接 · 海外华人首选<br>
+                    客服01全程跟进，从报名到备考一站式服务。
+                </div>
+
+                <p style="font-size: 14px; color: #9aafc8; margin-bottom: 10px;"><strong>📚 鸿鹄论坛热帖推荐（AWS 相关）：</strong></p>
+                <ul class="link-list">
+                    <li><a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=667970&highlight=AWS" target="_blank" rel="noopener">CLF-C01 / CLF-C02 AWS Certified Cloud Practitioner 题库</a></li>
+                    <li><a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=668125&highlight=AWS" target="_blank" rel="noopener">SAA-C03 AWS Solutions Architect Associate 最新题库</a></li>
+                    <li><a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=644827&highlight=AWS" target="_blank" rel="noopener">AWS SAA-C03 最新题库（持续更新）</a></li>
+                    <li><a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=670893&highlight=AWS" target="_blank" rel="noopener">AWS CLF-C02 英文题库分享</a></li>
+                    <li><a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=674193&highlight=AWS" target="_blank" rel="noopener">AWS ANS-C01 题库 272Q</a></li>
+                </ul>
+                <p style="font-size: 13px; color: #6a7e98; font-style: italic; margin-top: 4px;">以上内容精选自鸿鹄论坛，均为高质量备考资源。</p>
+            </div>
+        </div>
+
+        <!-- ===== Divider ===== -->
+        <div class="divider"></div>
+
+        <!-- ===== Footer ===== -->
+        <footer class="footer">
+            <div class="footer-brand">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                鸿鹄论坛 · 客服01
+            </div>
+            <p>本文信息由<strong style="color: #ffb347;">鸿鹄论坛客服01</strong>整理，具体内容以报考时官方页面显示为准。</p>
+            <p style="margin-top: 8px; font-size: 13px; color: #5a6e88;">
+                有报名或备考疑问？欢迎联系鸿鹄论坛客服01，全程一对一协助！<br>
+                <a href="https://bbs.hh010.com/forum.php?mod=viewthread&tid=666975" target="_blank" rel="noopener" style="color: #6ab0ff;">点击进入服务贴 → 鸿鹄论坛官方IT认证备考资料报名服务</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- ===== Scroll to Top Button ===== -->
+    <button class="scroll-top" id="scrollTopBtn" aria-label="返回顶部">↑</button>
+
+    <script>
+        // Scroll to Top
+        const scrollBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!--
+@title:   CCNP 报名考试流程全指南
+@date:    2026-06-19
+@tag:     cert
+@excerpt: 準備報考 CCNP 但不知道從何入手？本文整理完整的 CCNP 報名流程，涵蓋 Cisco 帳號註冊、考試科目選擇、Pearson VUE 預約步驟、考試費用及注意事項，適合首次報考的考生參考。無論你在香港、台灣或澳門應考，照著步驟操作即可順利完成報名。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCNP 报名考试流程全指南</title>
+    <style>
+        :root {
+            --cisco-blue: #1ba0d7;
+            --cisco-dark: #005073;
+            --cisco-deep: #003d5c;
+            --bg-light: #f0f7fc;
+            --text-main: #2c3e50;
+            --text-muted: #6b7c93;
+            --accent-orange: #ff7d00;
+            --card-shadow: 0 2px 12px rgba(0, 80, 115, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+            color: var(--text-main);
+            line-height: 1.8;
+            background: var(--bg-light);
+        }
+
+        /* ===== Header ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--cisco-deep), var(--cisco-blue));
+            color: #fff;
+            padding: 60px 20px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent-orange), #ffb84d, var(--accent-orange));
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 4px 16px;
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+
+        /* ===== Container ===== */
+        .container {
+            max-width: 860px;
+            margin: -30px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Cards ===== */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 36px 40px;
+            margin-bottom: 24px;
+        }
+
+        /* ===== Section ===== */
+        .section-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            background: var(--cisco-blue);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.35rem;
+            color: var(--cisco-dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .section-content { padding-left: 48px; }
+        .section-content p { margin-bottom: 14px; }
+
+        /* ===== Info Box ===== */
+        .info-box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--cisco-blue);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+        }
+        .info-box strong { color: var(--cisco-dark); }
+
+        .warn-box {
+            background: #fff8ee;
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 0.92rem;
+        }
+
+        /* ===== Table ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.92rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: var(--cisco-dark);
+            color: #fff;
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 11px 14px;
+            border-bottom: 1px solid #e8eef3;
+        }
+        tr:nth-child(even) td { background: #fafcfe; }
+        tr:last-child td { border-bottom: none; }
+
+        /* ===== Steps ===== */
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .step-icon {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            background: var(--cisco-blue);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        .step-body h4 {
+            color: var(--cisco-dark);
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+        .step-body p { margin-bottom: 6px; font-size: 0.94rem; }
+
+        /* ===== Tags ===== */
+        .tag {
+            display: inline-block;
+            background: #e6f4fa;
+            color: var(--cisco-dark);
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 0.82rem;
+            margin: 2px 4px 2px 0;
+        }
+        .tag.orange {
+            background: #fff0e0;
+            color: #c06000;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-item {
+            border-bottom: 1px solid #e8eef3;
+            padding: 16px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q {
+            font-weight: 700;
+            color: var(--cisco-dark);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .faq-q::before {
+            content: "Q ";
+            color: var(--accent-orange);
+        }
+        .faq-a { font-size: 0.93rem; }
+        .faq-a::before {
+            content: "A ";
+            color: var(--cisco-blue);
+            font-weight: 700;
+        }
+
+        /* ===== Timeline ===== */
+        .timeline {
+            position: relative;
+            padding-left: 28px;
+            margin: 16px 0;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 8px; top: 6px; bottom: 6px;
+            width: 2px;
+            background: var(--cisco-blue);
+            opacity: 0.3;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 18px;
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -27px; top: 6px;
+            width: 12px; height: 12px;
+            background: #fff;
+            border: 3px solid var(--cisco-blue);
+            border-radius: 50%;
+        }
+        .timeline-item h4 {
+            color: var(--cisco-dark);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+        .timeline-item p { font-size: 0.88rem; color: var(--text-muted); }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .footer a { color: var(--cisco-blue); text-decoration: none; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.5rem; }
+            .card { padding: 24px 20px; }
+            .section-content { padding-left: 0; }
+            .section-title { font-size: 1.15rem; }
+            th, td { font-size: 0.82rem; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+    <h1>CCNP 报名考试流程全指南</h1>
+    <p>Cisco Certified Network Professional — 从注册到拿证的完整攻略</p>
+    <div class="badge">2026 最新版 · 含费用、流程、FAQ</div>
+</header>
+
+<div class="container">
+
+    <!-- ===== 1. CCNP 简介 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">1</span>
+            CCNP 是什么？
+        </div>
+        <div class="section-content">
+            <p><strong>CCNP</strong>（Cisco Certified Network Professional）是思科认证体系中的<strong>中级认证</strong>，面向能够独立负责中大型企业网络设计、部署、运维与优化的网络工程师。持有该证书意味着具备对 100～500+ 节点企业网络的安装、配置和故障排除能力。</p>
+            <p>CCNP 主要有以下方向可选：</p>
+            <div>
+                <span class="tag">企业基础架构 Enterprise</span>
+                <span class="tag">网络安全 Security</span>
+                <span class="tag">运营商 SP</span>
+                <span class="tag">DevNet</span>
+                <span class="tag">协作 Collaboration</span>
+                <span class="tag">数据中心 DC</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 2. 报考条件 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">2</span>
+            报考条件
+        </div>
+        <div class="section-content">
+            <div class="info-box">
+                <strong>自 2020 年改革后，CCNP 不再强制要求先通过 CCNA。</strong>任何年满 18 周岁的考生均可直接报考，无论学历、专业或工作经验。
+            </div>
+            <p>不过需要注意：CCNP 内容深度远超 CCNA，涵盖高级路由协议、网络虚拟化、安全策略及自动化等复杂主题。具备扎实的网络基础是顺利通过考试的关键。</p>
+        </div>
+    </div>
+
+    <!-- ===== 3. 考试科目 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">3</span>
+            考试科目（1+1 模式）
+        </div>
+        <div class="section-content">
+            <p>当前 CCNP 采用<strong>「1 门核心考试 + 1 门专业方向考试」</strong>的模块化模式，两门均通过即可获得对应方向的 CCNP 证书。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:18%">类型</th>
+                        <th style="width:22%">考试代码</th>
+                        <th>考试内容</th>
+                        <th style="width:14%">时长</th>
+                        <th style="width:12%">费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>核心考试</strong></td>
+                        <td>350-401 ENCOR</td>
+                        <td>网络架构、虚拟化、基础设施、安全与自动化</td>
+                        <td>120 分钟</td>
+                        <td>$400</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6"><strong>选修考试</strong><br>（任选其一）</td>
+                        <td>300-410 ENARSI</td>
+                        <td>高级路由与服务</td>
+                        <td>90 分钟</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>300-415 ENSDWI</td>
+                        <td>SD-WAN 部署</td>
+                        <td>90 分钟</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>300-420 ENSLD</td>
+                        <td>网络设计</td>
+                        <td>90 分钟</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>300-435 ENAUTO</td>
+                        <td>自动化与可编程性</td>
+                        <td>90 分钟</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>300-440 ENCC</td>
+                        <td>云安全连接设计与实施</td>
+                        <td>90 分钟</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>300-445 ENNA</td>
+                        <td>企业网络保障</td>
+                        <td>90 分钟</td>
+                        <td>$300</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>考试形式：</strong>上机笔试，题型包括单选、多选、拖拽题及少量模拟操作题。满分 1000 分，<strong>825 分及格</strong>。
+            </div>
+            <div class="info-box">
+                <strong>进阶价值：</strong>核心考试 350-401 同时也是 CCIE 的笔试。通过后不仅可申请 CCNP，还具备参加 CCIE 实验考试的资格。
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 4. 报名流程 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">4</span>
+            报名流程（详细步骤）
+        </div>
+        <div class="section-content">
+            <p>CCNP 考试由全球授权考试服务商 <strong>Pearson VUE</strong> 统一组织。报名流程如下：</p>
+
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-body">
+                    <h4>注册思科账号（Cisco ID）</h4>
+                    <p>访问<a href="https://www.cisco.com/site/us/en/learn/training-certifications/" target="_blank">思科认证官网</a>，注册或登录 Cisco Certification 账号。系统会生成专属的 CSCO 号码，作为你的网工身份凭证。</p>
+                    <p><span class="tag orange">注意</span> 填写的拼音姓名必须与身份证件上的法定姓名完全一致。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-body">
+                    <h4>进入认证追踪系统，选择考试科目</h4>
+                    <p>登录后进入 <strong>Certification Tracking System</strong>，选择你要报考的 CCNP 考试科目（如 350-401 ENCOR）。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-body">
+                    <h4>跳转 Pearson VUE 平台预约</h4>
+                    <p>点击「Schedule Exam」按钮，跳转至 <a href="https://home.pearsonvue.com/cisco" target="_blank">Pearson VUE</a> 平台。也可直接访问 Pearson VUE 思科专属页面预约。</p>
+                    <p>选择考试类型（线下考点 / OnVUE 在线监考）、就近考点（全国 70+ 城市设有考场）、日期与时间段。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">4</div>
+                <div class="step-body">
+                    <h4>在线支付考试费用</h4>
+                    <p>确认信息无误后在线支付。支持信用卡（Visa / Mastercard）或思科学习积分（CLCs）。</p>
+                    <p><strong>费用汇总：</strong>核心考试 $400 + 选修考试 $300 = <strong>合计约 $700</strong>（按汇率约合人民币 5100 元左右）。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">5</div>
+                <div class="step-body">
+                    <h4>收到预约确认邮件</h4>
+                    <p>支付成功后，会收到 Pearson VUE 发送的预约确认邮件，内含考试编号、考点地址和时间。建议保存邮件以备后续查阅。</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>考试时间：</strong>全年开放，工作日（周一至周五）均可安排。建议提前 1–2 周预约以确保考位。<br>
+                <strong>两门考试顺序：</strong>无先后要求，可在 18 个月内分别完成。
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 5. 考试当天 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">5</span>
+            考试当天注意事项
+        </div>
+        <div class="section-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:25%">事项</th>
+                        <th>详细说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>携带证件</strong></td>
+                        <td>需出示<strong>两类有效身份证件</strong>：<br>
+                            ① 一类证件（带照片、在有效期内）：身份证、护照、驾照、社保卡等<br>
+                            ② 二类证件（带姓名、在有效期内）：信用卡、医保卡、带签名的工作证等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>提前到场</strong></td>
+                        <td>建议至少提前 <strong>30 分钟</strong>到达考点，完成签到、物品寄存、电子签名与拍照等流程。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>考场规则</strong></td>
+                        <td>禁止携带任何电子设备（手机、手表）、纸笔进入考场，所有操作均在考试系统内完成。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>成绩公布</strong></td>
+                        <td>考试结束后<strong>当场显示</strong>是否通过，正式成绩单由系统自动打印。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warn-box">
+                <strong>⚠️ 证件避坑：</strong>两张借记卡、或身份证+学生证的组合在大多数考点<strong>不予认可</strong>！请务必携带一类+二类有效证件组合。
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 6. 成绩与证书 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">6</span>
+            成绩查询与证书获取
+        </div>
+        <div class="section-content">
+            <p>两门考试全部通过后，按以下时间线获取证书：</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>考试结束 → 当场出成绩</h4>
+                    <p>交卷后考场打印成绩单，显示 Pass / Fail 及分数。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>1–3 个工作日 → 电子证书生成</h4>
+                    <p>登录思科认证追踪系统（CCT）下载电子版证书。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>通过后 10 天内 → 登记邮寄地址</h4>
+                    <p>需在通过后 10 天内完成地址登记，否则可能无法邮寄纸质证书。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>4–6 周 → 纸质证书送达</h4>
+                    <p>从美国总部寄出，国内一般 4–6 周送达。请确保英文地址准确。</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>证书有效期：3 年。</strong>到期前可通过以下方式续证：<br>
+                ① 重考任意一门 CCNP 考试；<br>
+                ② 通过 CCIE 笔试或实验考试；<br>
+                ③ 完成 80 个继续教育学分（CE Credits）。
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 7. 常见误区 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">7</span>
+            常见误区澄清
+        </div>
+        <div class="section-content">
+            <div class="faq-item">
+                <div class="faq-q">必须先考 CCNA 才能报 CCNP？</div>
+                <div class="faq-a">已取消。自 2020 年改革后，任何人可直接报考 CCNP，无需 CCNA 前置证书。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">两门考试必须同一天考完？</div>
+                <div class="faq-a">无需。可在 18 个月内分别完成，顺序不限，先考哪门都可以。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">只通过核心考试就能拿证？</div>
+                <div class="faq-a">不行。必须通过核心考试 + 选修考试共两门，缺一不可。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">可以在家参加 OnVUE 线上考试吗？</div>
+                <div class="faq-a">思科官方确实提供 OnVUE 在线监考服务，但在中国大陆地区受到严格限制。盲目使用 VPN 在家考试极易被判定为违规并封号，建议优先选择线下考点。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">没通过某门考试怎么办？</div>
+                <div class="faq-a">哪门没过就单独补考哪门，需缴纳该门的补考费用。两门之间的完成时间间隔需在 18 个月内。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">可以在第三方培训机构直接报名考试吗？</div>
+                <div class="faq-a">部分培训机构提供代报名服务，但最终预约与监考仍由 Pearson VUE 承办。务必确认机构资质，谨防被骗。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 8. 流程总览 ===== -->
+    <div class="card">
+        <div class="section-title">
+            <span class="section-num">8</span>
+            全流程总览
+        </div>
+        <div class="section-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:8%">步骤</th>
+                        <th style="width:25%">动作</th>
+                        <th>关键要点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>①</td><td>注册思科账号</td><td>获取 CSCO 号码，姓名须与证件一致</td></tr>
+                    <tr><td>②</td><td>选择考试科目</td><td>确定方向，选择核心+选修科目</td></tr>
+                    <tr><td>③</td><td>Pearson VUE 预约</td><td>选考点、日期、时间段</td></tr>
+                    <tr><td>④</td><td>在线支付</td><td>$400 + $300 = 约 $700</td></tr>
+                    <tr><td>⑤</td><td>收到确认邮件</td><td>保存考试编号与时间</td></tr>
+                    <tr><td>⑥</td><td>参加考试</td><td>提前30分钟到场，双证件核验</td></tr>
+                    <tr><td>⑦</td><td>查询成绩</td><td>当场出成绩，48小时内线上可查</td></tr>
+                    <tr><td>⑧</td><td>获取证书</td><td>1–3天电子版，4–6周纸质版</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+    <p>本文信息由鸿鹄论坛客服01整理，具体内容以报考时官方页面显示为准。</p>
+</footer>
+
+</body>
+</html>
