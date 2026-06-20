@@ -180,9 +180,11 @@ function updateSitemap(posts) {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     `  <url><loc>${BASE_URL}/</loc><lastmod>${today}</lastmod><priority>1.0</priority></url>`,
-    ...posts.map(p =>
-      `  <url><loc>${BASE_URL}/posts/${p.file}</loc><lastmod>${p.date}</lastmod><priority>0.8</priority></url>`
-    )
+    ...posts.map(p => {
+      // 必须对 URL 进行编码，处理空格和中文字符，否则 Google Search Console 会报错无法读取
+      const encodedFile = encodeURI(p.file);
+      return `  <url><loc>${BASE_URL}/posts/${encodedFile}</loc><lastmod>${p.date}</lastmod><priority>0.8</priority></url>`;
+    })
   ].join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
