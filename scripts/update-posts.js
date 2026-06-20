@@ -122,6 +122,32 @@ function buildPostRowHTML(post) {
 function updateIndex(featured, normalPosts) {
   let html = fs.readFileSync(INDEX_FILE, 'utf-8');
 
+  // 注入搜索数据
+  const searchData = normalPosts.map(p => ({
+    title: p.title,
+    excerpt: p.excerpt || '',
+    date: p.date,
+    tag: p.tag || 'cert',
+    file: p.file
+  }));
+  if (featured) {
+    searchData.unshift({
+      title: featured.title,
+      excerpt: featured.excerpt || '',
+      date: featured.date,
+      tag: featured.tag || 'cert',
+      file: featured.file
+    });
+  }
+  
+  const searchDataScript = `<script id="search-data" type="application/json">\n${JSON.stringify(searchData)}\n</script>`;
+  
+  if (html.includes('<script id="search-data"')) {
+    html = html.replace(/<script id="search-data" type="application\/json">[\s\S]*?<\/script>/, searchDataScript);
+  } else {
+    html = html.replace('</body>', searchDataScript + '\n</body>');
+  }
+
   // 4a. FEATURED 区块
   if (featured) {
     if (html.includes('FEATURED</span>')) {
