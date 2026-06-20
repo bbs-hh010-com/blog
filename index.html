@@ -211,6 +211,12 @@
     .cert-pill { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--border2); color: var(--text2); letter-spacing: .06em; transition: all .2s; user-select: none; }
     .cert-pill.hot { border-color: var(--blue); color: var(--blue); background: var(--blue3); }
 
+    .search-wrap { margin-top: 1.5rem; position: relative; max-width: 400px; }
+    .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--text3); pointer-events: none; }
+    .search-input { width: 100%; background: var(--bg3); border: 1px solid var(--border2); border-radius: 6px; padding: 10px 14px 10px 38px; color: var(--text); font-family: var(--body); font-size: 13px; outline: none; transition: all .2s; }
+    .search-input:focus { border-color: var(--blue); background: var(--bg4); box-shadow: 0 0 0 2px rgba(77,159,255,0.1); }
+    .search-input::placeholder { color: var(--text3); }
+
     .sec { padding: 2rem 0; border-bottom: 1px solid var(--border); }
     .sec-hd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
     .sec-title { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .12em; }
@@ -291,13 +297,20 @@
       <div class="hero-label-line"></div>
       <div class="hero-label-text">IT CERTIFICATION TUTORIALS</div>
     </div>
-    <h1 class="hero-title">國際 IT 認證<br><em>備考教程</em></h1>
+    <h1 class="hero-title">國際 IT 認證 <em>備考方案</em></h1>
     <p class="hero-desc">專注 AWS、Cisco、CompTIA、Microsoft 等主流認證的備考經驗與考點解析，每篇文章配圖詳解，幫你高效理解、少走彎路。</p>
     <div class="hero-certs" aria-label="文章分類">
       <div class="cert-pill filter-btn hot" data-filter="ALL" onclick="filterPosts('ALL')" style="cursor: pointer;">ALL</div>
       <div class="cert-pill filter-btn" data-filter="CERT" onclick="filterPosts('CERT')" style="cursor: pointer;">CERT</div>
       <div class="cert-pill filter-btn" data-filter="TOOL" onclick="filterPosts('TOOL')" style="cursor: pointer;">TOOL</div>
       <div class="cert-pill filter-btn" data-filter="TIP" onclick="filterPosts('TIP')" style="cursor: pointer;">TIP</div>
+    </div>
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题或内容..." oninput="handleSearch(this.value)" autocomplete="off" />
     </div>
   </section>
 
@@ -306,7 +319,7 @@
     <div class="sec-hd">
       <span class="sec-title"><span>//</span>FEATURED</span>
     </div>
-                                                                                        <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
+                                                                                            <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
       <div class="feat-title">鸿鹄论坛</div>
       <p class="feat-desc">鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇</p>
       <div class="feat-foot">
@@ -734,9 +747,78 @@ function filterPosts(tag) {
     }
   });
 }
+
+let searchData = null;
+let originalPostsHTML = null;
+
+function handleSearch(query) {
+  query = query.trim().toLowerCase();
+  const postsList = document.querySelector('.posts-list');
+  const featSection = document.querySelector('.sec[aria-label="推荐文章"]');
+  const secTitle = document.querySelector('.sec[aria-label="最新文章"] .sec-title');
+
+  if (originalPostsHTML === null) {
+    originalPostsHTML = postsList.innerHTML;
+  }
+
+  // Reset filters UI
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('hot'));
+  const allBtn = document.querySelector('.filter-btn[data-filter="ALL"]');
+  if (allBtn) allBtn.classList.add('hot');
+
+  if (!query) {
+    if (featSection) featSection.style.display = '';
+    if (secTitle) secTitle.innerHTML = '<span>//</span>LATEST POSTS';
+    postsList.innerHTML = originalPostsHTML;
+    // Restore filter logic for ALL
+    filterPosts('ALL');
+    return;
+  }
+
+  if (!searchData) {
+    const dataEl = document.getElementById('search-data');
+    if (dataEl) {
+      try { searchData = JSON.parse(dataEl.textContent); } catch(e) { searchData = []; }
+    } else {
+      searchData = [];
+    }
+  }
+
+  const results = searchData.filter(p => {
+    const titleMatch = p.title && p.title.toLowerCase().includes(query);
+    const excerptMatch = p.excerpt && p.excerpt.toLowerCase().includes(query);
+    return titleMatch || excerptMatch;
+  });
+
+  if (featSection) featSection.style.display = 'none';
+  if (secTitle) secTitle.innerHTML = `<span>//</span>SEARCH RESULTS (${results.length})`;
+  
+  if (results.length === 0) {
+    postsList.innerHTML = '<div style="padding: 2rem 0; color: var(--text3); font-family: var(--mono); font-size: 12px;">NO RESULTS FOUND.</div>';
+    return;
+  }
+
+  postsList.innerHTML = results.map(p => {
+    const cls = p.tag === 'tip' ? 'tip' : (p.tag === 'tool' ? 'tool' : 'cert');
+    const label = (p.tag || 'cert').toUpperCase();
+    return `
+      <a href="posts/${p.file}" class="post-row">
+        <div>
+          <div class="post-meta"><span class="post-tag ${cls}">${label}</span><span class="post-date">${p.date}</span></div>
+          <div class="post-title">${p.title}</div>
+          <div class="post-exc">${p.excerpt || ''}</div>
+        </div>
+        <div class="post-min"></div>
+      </a>
+    `;
+  }).join('');
+}
 </script>
 
 
+<script id="search-data" type="application/json">
+[{"title":"鸿鹄论坛","excerpt":"鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇","date":"2026-06-17","tag":"tip","file":"鴻鵠論壇靠譜.html"},{"title":"AWS认证考试报名全流程教程","excerpt":"想考 AWS 認證但對報名流程感到陌生？本文詳細說明從建立 AWS Certification 帳號、選擇考試科目、透過 Pearson VUE 預約考場，到付款完成的完整步驟。內容同時涵蓋線上監考與實體考場的差異，幫助港澳台考生快速掌握報名要點。","date":"2026-06-19","tag":"cert","file":"AWS-exam-報名考試流程.html"},{"title":"CCNP 报名考试流程全指南","excerpt":"準備報考 CCNP 但不知道從何入手？本文整理完整的 CCNP 報名流程，涵蓋 Cisco 帳號註冊、考試科目選擇、Pearson VUE 預約步驟、考試費用及注意事項，適合首次報考的考生參考。無論你在香港、台灣或澳門應考，照著步驟操作即可順利完成報名。","date":"2026-06-19","tag":"cert","file":"CCNP报名考试流程.html"},{"title":"CCNA 考试报名流程与费用","excerpt":"CCNA 考试报名流程与费用","date":"2026-06-17","tag":"cert","file":"CCNA考试报名流程.html"},{"title":"個人網站搜索引擎收录实战教程","excerpt":"自己建立網站，如何被各大搜索引擎快速收錄，只需要做好這幾點","date":"2026-06-17","tag":"tip","file":"seo-搜索引擎收录实战教程.html"},{"title":"CISM CISA考後證書申请流程指南","excerpt":"详解 CISA CISM 认证的申请条件、材料准备和提交流程，帮助你顺利完成认证申请。","date":"2026-06-16","tag":"cert","file":"CISM CISA考後證書申请流程指南 .html"}]
+</script>
 </body>
 
 </html>
