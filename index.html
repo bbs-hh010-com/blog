@@ -49,8 +49,9 @@
       --border:  rgba(255,255,255,0.08);
       --border2: rgba(255,255,255,0.13);
       --text:  #e8eaf0;
-      --text2: #8892a4;
-      --text3: #4a5568;
+      --text2: #9aa3b5;
+      --text3: #6b7686;
+      --text-exc: #aab3c2;
       --blue:  #4d9fff;
       --blue2: #1a3a5c;
       --blue3: #0d2040;
@@ -103,7 +104,7 @@
     }
     .logo-box span { font-family: var(--mono); font-size: 13px; color: var(--blue); font-weight: 700; }
     .brand-name { font-family: var(--display); font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: .04em; }
-    .brand-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .12em; margin-top: 2px; }
+    .brand-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .12em; margin-top: 2px; white-space: nowrap; }
     nav { display: flex; gap: 1.8rem; align-items: center; }
     nav a { font-family: var(--mono); font-size: 11px; color: var(--text2); letter-spacing: .08em; transition: color .15s; }
     nav a:hover, nav a.on { color: var(--blue); }
@@ -225,7 +226,7 @@
     .see-all:hover { text-decoration: underline; }
 
     .posts-list { display: flex; flex-direction: column; }
-    .post-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start; padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
+    .post-row { display: block; padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
     .post-row:last-child { border-bottom: none; }
     .post-row:hover .post-title { color: var(--blue); }
     .post-meta { display: flex; align-items: center; gap: 8px; margin-bottom: .5rem; }
@@ -235,8 +236,7 @@
     .post-tag.tip  { border-color: var(--gold); color: var(--gold); background: var(--gold2); }
     .post-date { font-family: var(--mono); font-size: 10px; color: var(--text3); }
     .post-title { font-size: 14px; font-weight: 400; color: var(--text); line-height: 1.5; margin-bottom: .35rem; transition: color .15s; }
-    .post-exc { font-size: 11px; color: var(--text3); line-height: 1.7; font-weight: 300; }
-    .post-min { font-family: var(--mono); font-size: 10px; color: var(--text3); white-space: nowrap; margin-top: 4px; }
+    .post-exc { font-size: 11px; color: var(--text-exc); line-height: 1.7; font-weight: 380; }
 
     .footer { padding: 1.8rem 0 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; }
     .footer-l { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: .04em; }
@@ -252,13 +252,12 @@
       .logo-box span { font-size: 11px; }
       .brand-name { font-size: 15px; }
       .brand-sub { font-size: 8.5px; letter-spacing: 0.08em; }
-      .cs-btn { padding: 5px 10px; font-size: 10px; }
+      .cs-btn { padding: 11px 16px; font-size: 11px; }
       .hero { padding: 2rem 0 1.5rem; }
       .hero-title { font-size: 28px; margin-bottom: 0.8rem; }
       .hero-desc { font-size: 13px; line-height: 1.7; }
-      .post-row { grid-template-columns: 1fr; gap: 8px; padding: 1.2rem 0; }
-      .post-min { font-size: 10px; margin-top: 4px; display: block; opacity: 0.7; }
       .post-title { font-size: 15px; }
+      .post-exc { font-size: 12px; }
       .footer { flex-direction: column; align-items: center; gap: 1rem; padding-top: 1.5rem; }
       .footer-l { text-align: center; line-height: 1.6; }
     }
@@ -319,7 +318,7 @@
     <div class="sec-hd">
       <span class="sec-title"><span>//</span>FEATURED</span>
     </div>
-                                                                                                                        <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
+                                                                                                            <a href="posts/鴻鵠論壇靠譜.html" class="feat-card">
       <div class="feat-title">鸿鹄论坛</div>
       <p class="feat-desc">鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇</p>
       <div class="feat-foot">
@@ -336,21 +335,12 @@
       <span class="sec-title"><span>//</span>LATEST POSTS</span>
     </div>
     <div class="posts-list">
-      <a href="posts/零基礎也能拿_Red_Hat_架構師認證_RHCA_完整攻略.html" class="post-row">
-        <div>
-          <div class="post-meta"><span class="post-tag cert">CERT</span><span class="post-date">2026-06-25</span></div>
-          <div class="post-title">2026年RHCA認證完整攻略｜零基礎到紅帽架構師一步步教你考｜薪資、求職、前景全解析</div>
-          <div class="post-exc">2026年Red Hat认证大改版！5条路径直通架构师，最快6个月拿证，AI方向年薪破百万——现在入场，正是早鸟红利期。</div>
-        </div>
-        <div class="post-min"></div>
-      </a>
       <a href="posts/国际IT认证服务目录.html" class="post-row">
         <div>
           <div class="post-meta"><span class="post-tag tool">TOOL</span><span class="post-date">2026-06-21</span></div>
           <div class="post-title">國際IT認證服務目錄-考試助考包過一站式服務平台 hohu.cc.cd</div>
           <div class="post-exc">Get guaranteed pass for Cisco, CompTIA, AWS, Microsoft, PMP, and more. One-stop IT certification exam support platform. 100% pass assistance, real exam dumps, practice tests & expert guidance. Visit hohu.cc.cd now.</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/鸿鹄游戏 路由人生 .html" class="post-row">
         <div>
@@ -358,7 +348,6 @@
           <div class="post-title">网工遊戲｜免费在线玩：99%的网工撑不过前三关</div>
           <div class="post-exc">一个真实事故改编的免费小游戏，最近在鸿鹄论坛悄悄被顶上了热门——评论区清一色「这不会是在写我吧」。</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/F5認證考試報名全流程教學.html" class="post-row">
         <div>
@@ -366,7 +355,6 @@
           <div class="post-title">F5认证考试报名全流程指南 2026 - F5 Certified 报名注册考试步骤详解</div>
           <div class="post-exc">F5認證考試報名全流程教學，應試注意事項及成績查詢,一篇講清楚。海外考生報考前必看指南。想報考 F5 認證卻不知從何下手?本文整理 F5 認證考試的完整報名步驟,包含 Candidate Portal 帳號註冊、考試券購買管道、科目選擇建議,以及 Pearson VUE 預約全流程,助你少走彎路、順利應試。</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/AWS-exam-報名考試流程.html" class="post-row">
         <div>
@@ -374,7 +362,6 @@
           <div class="post-title">AWS认证考试报名全流程教程</div>
           <div class="post-exc">想考 AWS 認證但對報名流程感到陌生？本文詳細說明從建立 AWS Certification 帳號、選擇考試科目、透過 Pearson VUE 預約考場，到付款完成的完整步驟。內容同時涵蓋線上監考與實體考場的差異，幫助港澳台考生快速掌握報名要點。</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/CCNP报名考试流程.html" class="post-row">
         <div>
@@ -382,7 +369,6 @@
           <div class="post-title">CCNP 报名考试流程全指南</div>
           <div class="post-exc">準備報考 CCNP 但不知道從何入手？本文整理完整的 CCNP 報名流程，涵蓋 Cisco 帳號註冊、考試科目選擇、Pearson VUE 預約步驟、考試費用及注意事項，適合首次報考的考生參考。無論你在香港、台灣或澳門應考，照著步驟操作即可順利完成報名。</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/CCNA考试报名流程.html" class="post-row">
         <div>
@@ -390,7 +376,6 @@
           <div class="post-title">CCNA 考试报名流程与费用</div>
           <div class="post-exc">CCNA 考试报名流程与费用</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/seo-搜索引擎收录实战教程.html" class="post-row">
         <div>
@@ -398,7 +383,6 @@
           <div class="post-title">個人網站搜索引擎收录实战教程</div>
           <div class="post-exc">自己建立網站，如何被各大搜索引擎快速收錄，只需要做好這幾點</div>
         </div>
-        <div class="post-min"></div>
       </a>
       <a href="posts/CISM CISA考後證書申请流程指南 .html" class="post-row">
         <div>
@@ -406,7 +390,6 @@
           <div class="post-title">CISM CISA考後證書申请流程指南</div>
           <div class="post-exc">详解 CISA CISM 认证的申请条件、材料准备和提交流程，帮助你顺利完成认证申请。</div>
         </div>
-        <div class="post-min"></div>
       </a>
     </div>
   </section>
@@ -840,7 +823,6 @@ function handleSearch(query) {
           <div class="post-title">${p.title}</div>
           <div class="post-exc">${p.excerpt || ''}</div>
         </div>
-        <div class="post-min"></div>
       </a>
     `;
   }).join('');
@@ -849,7 +831,7 @@ function handleSearch(query) {
 
 
 <script id="search-data" type="application/json">
-[{"title":"鸿鹄论坛","excerpt":"鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇","date":"2026-06-17","tag":"tip","file":"鴻鵠論壇靠譜.html"},{"title":"2026年RHCA認證完整攻略｜零基礎到紅帽架構師一步步教你考｜薪資、求職、前景全解析","excerpt":"2026年Red Hat认证大改版！5条路径直通架构师，最快6个月拿证，AI方向年薪破百万——现在入场，正是早鸟红利期。","date":"2026-06-25","tag":"cert","file":"零基礎也能拿_Red_Hat_架構師認證_RHCA_完整攻略.html"},{"title":"國際IT認證服務目錄-考試助考包過一站式服務平台 hohu.cc.cd","excerpt":"Get guaranteed pass for Cisco, CompTIA, AWS, Microsoft, PMP, and more. One-stop IT certification exam support platform. 100% pass assistance, real exam dumps, practice tests & expert guidance. Visit hohu.cc.cd now.","date":"2026-06-21","tag":"tool","file":"国际IT认证服务目录.html"},{"title":"网工遊戲｜免费在线玩：99%的网工撑不过前三关","excerpt":"一个真实事故改编的免费小游戏，最近在鸿鹄论坛悄悄被顶上了热门——评论区清一色「这不会是在写我吧」。","date":"2026-06-21","tag":"tool","file":"鸿鹄游戏 路由人生 .html"},{"title":"F5认证考试报名全流程指南 2026 - F5 Certified 报名注册考试步骤详解","excerpt":"F5認證考試報名全流程教學，應試注意事項及成績查詢,一篇講清楚。海外考生報考前必看指南。想報考 F5 認證卻不知從何下手?本文整理 F5 認證考試的完整報名步驟,包含 Candidate Portal 帳號註冊、考試券購買管道、科目選擇建議,以及 Pearson VUE 預約全流程,助你少走彎路、順利應試。","date":"2026-06-20","tag":"cert","file":"F5認證考試報名全流程教學.html"},{"title":"AWS认证考试报名全流程教程","excerpt":"想考 AWS 認證但對報名流程感到陌生？本文詳細說明從建立 AWS Certification 帳號、選擇考試科目、透過 Pearson VUE 預約考場，到付款完成的完整步驟。內容同時涵蓋線上監考與實體考場的差異，幫助港澳台考生快速掌握報名要點。","date":"2026-06-19","tag":"cert","file":"AWS-exam-報名考試流程.html"},{"title":"CCNP 报名考试流程全指南","excerpt":"準備報考 CCNP 但不知道從何入手？本文整理完整的 CCNP 報名流程，涵蓋 Cisco 帳號註冊、考試科目選擇、Pearson VUE 預約步驟、考試費用及注意事項，適合首次報考的考生參考。無論你在香港、台灣或澳門應考，照著步驟操作即可順利完成報名。","date":"2026-06-19","tag":"cert","file":"CCNP报名考试流程.html"},{"title":"CCNA 考试报名流程与费用","excerpt":"CCNA 考试报名流程与费用","date":"2026-06-17","tag":"cert","file":"CCNA考试报名流程.html"},{"title":"個人網站搜索引擎收录实战教程","excerpt":"自己建立網站，如何被各大搜索引擎快速收錄，只需要做好這幾點","date":"2026-06-17","tag":"tip","file":"seo-搜索引擎收录实战教程.html"},{"title":"CISM CISA考後證書申请流程指南","excerpt":"详解 CISA CISM 认证的申请条件、材料准备和提交流程，帮助你顺利完成认证申请。","date":"2026-06-16","tag":"cert","file":"CISM CISA考後證書申请流程指南 .html"}]
+[{"title":"鸿鹄论坛","excerpt":"鴻鵠論壇靠譜麼？為什麼要選擇鴻鵠論壇","date":"2026-06-17","tag":"tip","file":"鴻鵠論壇靠譜.html"},{"title":"國際IT認證服務目錄-考試助考包過一站式服務平台 hohu.cc.cd","excerpt":"Get guaranteed pass for Cisco, CompTIA, AWS, Microsoft, PMP, and more. One-stop IT certification exam support platform. 100% pass assistance, real exam dumps, practice tests & expert guidance. Visit hohu.cc.cd now.","date":"2026-06-21","tag":"tool","file":"国际IT认证服务目录.html"},{"title":"网工遊戲｜免费在线玩：99%的网工撑不过前三关","excerpt":"一个真实事故改编的免费小游戏，最近在鸿鹄论坛悄悄被顶上了热门——评论区清一色「这不会是在写我吧」。","date":"2026-06-21","tag":"tool","file":"鸿鹄游戏 路由人生 .html"},{"title":"F5认证考试报名全流程指南 2026 - F5 Certified 报名注册考试步骤详解","excerpt":"F5認證考試報名全流程教學，應試注意事項及成績查詢,一篇講清楚。海外考生報考前必看指南。想報考 F5 認證卻不知從何下手?本文整理 F5 認證考試的完整報名步驟,包含 Candidate Portal 帳號註冊、考試券購買管道、科目選擇建議,以及 Pearson VUE 預約全流程,助你少走彎路、順利應試。","date":"2026-06-20","tag":"cert","file":"F5認證考試報名全流程教學.html"},{"title":"AWS认证考试报名全流程教程","excerpt":"想考 AWS 認證但對報名流程感到陌生？本文詳細說明從建立 AWS Certification 帳號、選擇考試科目、透過 Pearson VUE 預約考場，到付款完成的完整步驟。內容同時涵蓋線上監考與實體考場的差異，幫助港澳台考生快速掌握報名要點。","date":"2026-06-19","tag":"cert","file":"AWS-exam-報名考試流程.html"},{"title":"CCNP 报名考试流程全指南","excerpt":"準備報考 CCNP 但不知道從何入手？本文整理完整的 CCNP 報名流程，涵蓋 Cisco 帳號註冊、考試科目選擇、Pearson VUE 預約步驟、考試費用及注意事項，適合首次報考的考生參考。無論你在香港、台灣或澳門應考，照著步驟操作即可順利完成報名。","date":"2026-06-19","tag":"cert","file":"CCNP报名考试流程.html"},{"title":"CCNA 考试报名流程与费用","excerpt":"CCNA 考试报名流程与费用","date":"2026-06-17","tag":"cert","file":"CCNA考试报名流程.html"},{"title":"個人網站搜索引擎收录实战教程","excerpt":"自己建立網站，如何被各大搜索引擎快速收錄，只需要做好這幾點","date":"2026-06-17","tag":"tip","file":"seo-搜索引擎收录实战教程.html"},{"title":"CISM CISA考後證書申请流程指南","excerpt":"详解 CISA CISM 认证的申请条件、材料准备和提交流程，帮助你顺利完成认证申请。","date":"2026-06-16","tag":"cert","file":"CISM CISA考後證書申请流程指南 .html"}]
 </script>
 </body>
 
